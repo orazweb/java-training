@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ArrayTraining {
 
     /**
@@ -5,11 +7,15 @@ public class ArrayTraining {
      * @return an empty int array of size n, eg: {0, 0, 0}
      */
     public int[] emptyIntArray(int n) {
-        int [] arrayInt = new int [n];
-        for (int i = 0; i < n ; i++ ) {
-            arrayInt[i] = 0;
-        }
-        return arrayInt;
+        /* solution initiale simplifiée */
+        return new int [n];
+
+        /* solution initiale */
+        // int [] arrayInt = new int [n];
+        // for (int i = 0; i < n ; i++ ) {
+        //     arrayInt[i] = 0;
+        // }
+        // return arrayInt;
     }
 
     /**
@@ -17,11 +23,15 @@ public class ArrayTraining {
      * @return an empty String array of size n, eg: {null, null}
      */
     public String[] emptyStringArray(int n) {
-        String [] arrayString = new String [n];
-        for (int i = 0; i < n ; i++ ) {
-            arrayString[i] = null;
-        }
-        return arrayString;
+        /* solution initiale simplifiée */
+        return new String [n];
+
+        /* solution initiale */
+        // String [] arrayString = new String [n];
+        // for (int i = 0; i < n ; i++ ) {
+        //     arrayString[i] = null;
+        // }
+        // return arrayString;
     }
 
     /**
@@ -43,8 +53,8 @@ public class ArrayTraining {
      * eg: {"test", sample", "value"}
      */
     public String[] stringArray(String a, String b, String c) {
-      String [] stringArray = {a,b,c};
-      return stringArray;
+        String [] stringArray = {a,b,c};
+        return stringArray;
     }
 
     /**
@@ -52,7 +62,6 @@ public class ArrayTraining {
      * @return length of the array, eg: 1
      */
     public int length(int[] array) {
-
         return array.length;
     }
 
@@ -61,7 +70,6 @@ public class ArrayTraining {
      * @return first value of the array, eg: 3
      */
     public int firstValue(int[] array) {
-
         return array[0];
     }
 
@@ -70,8 +78,7 @@ public class ArrayTraining {
      * @return last value of the array, eg: 1
      */
     public int lastValue(int[] array) {
-
-        return array[array.length];
+        return array[array.length-1];
     }
 
     /**
@@ -80,7 +87,6 @@ public class ArrayTraining {
      * @return value of the array at position, eg: 2
      */
     public int valueAtPosition(int[] array, int position) {
-
         return array[position];
     }
 
@@ -100,11 +106,15 @@ public class ArrayTraining {
      * @return sum of values of the array, eg: 6
      */
     public int sum(int[] array) {
-        int sum = 0;
-        for (int value : array) {
-            sum += value;
-        }
-        return sum;
+        /* solution initiale simplifiée */
+        return Arrays.stream(array).sum();
+
+        /* solution initiale */
+        // int sum = 0;
+        // for (int value : array) {
+        //     sum += value;
+        // }
+        // return sum;
     }
 
     /**
@@ -113,11 +123,17 @@ public class ArrayTraining {
      * @return if array contains searched value, eg: true
      */
     public boolean contains(int[] array, int search) {
-        for(int i = 0 ; i < array.length; i++){
-           if(search == array[i])
-             return true;
-          }
+        /* autre solution possible avec la boucle for each */
+        for(int value : array ) {
+            if (value == search) return true;
+        }
         return false;
+
+        /* solution initiale avec la boucle for */
+        // for(int i = 0 ; i < array.length; i++){
+        //    if(search == array[i]) return true;
+        //   }
+        // return false;
     }
 
     /**
@@ -125,12 +141,17 @@ public class ArrayTraining {
      * @return array where all words are capitalized, eg: {"Sample", "Value"}
      */
     public String[] capitalize(String[] array) {
-
         for (int i = 0; i < array.length; i++ ) {
           array[i] = array[i].substring(0, 1).toUpperCase() + array[i].substring(1);
         }
-
         return array;
+
+        //  ! ne fonctionne pas avec la boucle for each !
+        // for (String word : array ) {
+        //     word = word.substring(0,1).toUpperCase() + word.substring(1);
+        // }
+        //return array;
+
     }
 
     /**
@@ -140,14 +161,17 @@ public class ArrayTraining {
      * are equals, eg: false
      */
     public boolean equals(int[] first, int[] second) {
+        /* solution initiale simplifiée */
+        return Arrays.equals(first, second);
 
-        if (first.length == second.length) {
-            for (int i = 0; i < first.length; i++ ) {
-                if (first[i] != second[i]) return false;
-            }
-            return true;
-        }
-        else return false;
+        /* solution initiale */
+        // if (first.length == second.length) {
+        //     for (int i = 0; i < first.length; i++ ) {
+        //         if (first[i] != second[i]) return false;
+        //     }
+        //     return true;
+        // }
+        // else return false;
     }
 
     /**
@@ -155,11 +179,19 @@ public class ArrayTraining {
      * @return array with reversed values, eg: {3, 2, 1}
      */
     public int[] reverse(int[] array) {
+        /* solution initiale corrigée */
         int [] tmpArray = new int [array.length];
         for(int i = 0; i < array.length; i++){
-          tmpArray [i] = array [array.length - i];
+          tmpArray [i] = array [array.length - i - 1];
         }
         return tmpArray;
+
+        /* solution initiale (erreur sur l'indice des tableaux) */
+        // int [] tmpArray = new int [array.length];
+        // for(int i = 0; i < array.length; i++){
+        //   tmpArray [i] = array [array.length - i];
+        // }
+        // return tmpArray;
     }
 
     /**
@@ -169,11 +201,21 @@ public class ArrayTraining {
      * eg: {1, 2, 3, 4, 5}
      */
     public int[] concat(int[] first, int[] second) {
-        int [] tmpArray = new int [first.length + second.length];
+        /* solution initiale corrigée */
+        int [] concatArray = new int [first.length + second.length];
         for(int i = 0; i < first.length + second.length; i++){
-            if (i < first.length - 1) tmpArray[i] = first[i];
-            else tmpArray[i] = second[i - first.length - 1];
+            if (i < first.length) concatArray[i] = first[i];
+            else concatArray[i] = second[i - first.length];
         }
-        return tmpArray;
+        return concatArray;
+
+        /* solution initiale (erreur sur l'indice des tableaux) */
+        // int [] tmpArray = new int [first.length + second.length];
+        // for(int i = 0; i < first.length + second.length; i++){
+        //     if (i < first.length - 1) tmpArray[i] = first[i];
+        //     else tmpArray[i] = second[i - first.length - 1];
+        // }
+        // return tmpArray;
     }
+
 }
