@@ -46,7 +46,7 @@ public class ObjectTraining {
     // TODO 9. Create a method 'whoAmI' that returns "My name is {name} and I'm {age}"
     // where you replace {name} and {age} with attributes values
     public String whoAmI() {
-        return "My name is "+getName()+" and I'm "+getAge();
+        return "My name is "+this.getName()+" and I'm "+this.getAge();
     }
 
     // Do not remove this empty constructor !
